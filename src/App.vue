@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <k-form v-model="form" :rules="rules">
+      <k-form-item label="用户名" prop="name">
+        <k-input :value="form.name" name="name"></k-input>
+      </k-form-item>
+      <k-form-item label="年龄" prop="age">
+        <k-input :value="form.age" name="age"></k-input>
+      </k-form-item>
+    </k-form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import KForm from "./components/Form";
+import KFormItem from "./components/FormItem";
+import KInput from "./components/Input";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    KForm,
+    KFormItem,
+    KInput
+  },
+  data() {
+    return {
+      form: {
+        name: "Damien Crosse",
+        age: "36"
+      },
+      rules: {
+        name: {
+          required: true,
+          message: "用户名必填"
+        },
+        age: {
+          required: true,
+          message: "年龄必填"
+        }
+      }
+    };
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
